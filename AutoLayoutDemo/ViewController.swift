@@ -30,15 +30,19 @@ class ViewController: UIViewController {
         view2.leftAnchor.constraint(equalTo: view1.leftAnchor).isActive = true
         view2.rightAnchor.constraint(equalTo: view1.rightAnchor).isActive = true
     }
+}
 
-
+class AvatarView: UIView {
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 50, height: 50)
+    }
 }
 
 class View1: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.yellow.withAlphaComponent(0.1)
-        let avatarView = UIView()
+        let avatarView = AvatarView()
         avatarView.backgroundColor = UIColor.purple.withAlphaComponent(0.5)
         let nameLabel = UILabel()
         nameLabel.text = "NSLayoutConstraint"
@@ -67,9 +71,11 @@ class View1: UIView {
             NSLayoutConstraint(item: detailLabel, attribute: .left, relatedBy: .equal, toItem: nameLabel, attribute: .left, multiplier: 1, constant: 0)
         ])
         avatarView.addConstraints([
-            NSLayoutConstraint(item: avatarView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 80),
-            NSLayoutConstraint(item: avatarView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 80)
+            NSLayoutConstraint(item: avatarView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30),
+            NSLayoutConstraint(item: avatarView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
         ])
+        avatarView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        avatarView.setContentHuggingPriority(.required, for: .horizontal)
     }
 
     required init?(coder: NSCoder) {
@@ -81,7 +87,7 @@ class View2: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.yellow.withAlphaComponent(0.1)
-        let avatarView = UIView()
+        let avatarView = AvatarView()
         avatarView.backgroundColor = UIColor.purple.withAlphaComponent(0.5)
         let nameLabel = UILabel()
         nameLabel.text = "NSLayoutAnchor"
