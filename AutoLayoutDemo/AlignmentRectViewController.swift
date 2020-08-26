@@ -22,7 +22,7 @@ class AlignmentRectViewController: UIViewController {
         view.addSubview(view1)
 
         alignmentRectView.snp.makeConstraints { (make) in
-            make.top.equalTo(100)
+            make.top.equalTo(150)
             make.left.equalTo(50)
         }
 
